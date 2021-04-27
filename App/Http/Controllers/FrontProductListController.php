@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Subcategory;
+use App\Models\Slider;
 
 class FrontProductListController extends Controller
 {
@@ -17,8 +18,9 @@ class FrontProductListController extends Controller
     		array_push($randomActiveProductIds,$product->id);
     	}
     	$randomItemProducts = Product::whereNotIn('id',$randomActiveProductIds)->limit(3)->get();
+        $sliders = Slider::get();
 
-        return view('product',compact('products','randomItemProducts','randomActiveProducts'));
+        return view('product',compact('products','randomItemProducts','randomActiveProducts','sliders'));
     }
     public function show($id){
         $product = Product::find($id);
@@ -66,4 +68,20 @@ class FrontProductListController extends Controller
         $product = Product::whereBetween('price',[$request->min,$request->max ])->where('category_id',$categoryId)->get();
         return $product;
     }
+    public function moreProducts(Request $request){
+        //searchBar filter option
+        if($request->search){
+            $products = Product::where('name','like','%'.$request->search.'%')
+            ->orWhere('description','like','%'.$request->search.'%')
+            ->orWhere('additional_info','like','%'.$request->search.'%')
+
+            ->paginate(50);
+            return view('all-product',compact('products'));
+        }
+
+        $products = Product::latest()->paginate(50);
+        return view('all-product',compact('products'));
+       
+    }
+
 }

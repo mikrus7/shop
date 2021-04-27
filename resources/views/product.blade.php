@@ -4,17 +4,34 @@
 <div class="container">
 <main role="main">
 
-  <section class="jumbotron text-center">
-    <div class="container">
-      <h1>Album example</h1>
-      <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
-      <p>
-        <a href="#" class="btn btn-primary my-2">Main call to action</a>
-        <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-      </p>
+<div class="container">
+      <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
+
+  <div class="carousel-inner">
+    @if(count($sliders)>0)
+    @foreach($sliders as $key=> $slider)
+
+    <div class="carousel-item {{$key == 0 ? 'active' : ''}} ">
+      <img src="{{Storage::url($slider->image)}}" >
     </div>
-  </section>
-  <h2>Category</h2>
+    @endforeach
+    @endif
+
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+</div>
+<br><br>
+
+  <h2>Category:</h2>
+  <br>
   @foreach(App\Models\Category::all() as $cat)
     <a href="{{route('product.list',[$cat->slug])}}"> 
       <button class="btn btn-secondary">{{$cat->name}}</button>
@@ -24,11 +41,12 @@
   <div class="album py-5 bg-light">
     <div class="container">
     <h2>Products</h2>
+    <br>
         <div class="row">
         @foreach($products as $product)
-        <div class="col-md-4">
+        <div class="col-md-4" style="z-index: 1;">
           <div class="card mb-4 shadow-sm">
-          <img src="{{Storage::url($product->image)}}" height="200" style="width: 100%">
+          <img src="{{Storage::url($product->image)}}" height="200" style="width: 100%" >
             <div class="card-body">
             <p><b>{{$product->name}}</b></p>
               <p class="card-text">
@@ -39,7 +57,9 @@
                 <a href="product/{{$product->id}}">
                  <button type="button" class="btn btn-sm btn-outline-success">View</button>
                 </a>
+                <a href="{{route('add.cart',[$product->id])}}">
                   <button type="button" class="btn btn-sm btn-outline-primary">Add to Cart</button>
+                </a>
                 </div>
                 <small class="text-muted">${{$product->price}}</small>
               </div>
@@ -49,6 +69,10 @@
         @endforeach
       </div>
     </div>
+    <center>
+      <a href="{{route('more.product')}}"><button class="btn btn-success">More Product</button>
+      </a>
+    </center>
   </div>
 
   <!-- //Carousel -->
@@ -73,8 +97,9 @@
                 <a href="{{route('product.view',[$product->id])}}"> 
                   <button type="button" class="btn btn-sm btn-outline-success">View</button>
                   </a>
-            
+            <a href="{{route('add.cart',[$product->id])}}">
             <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
+            </a>
                 </div>
                 <small class="text-muted">${{$product->price}}</small>
               </div>
@@ -102,7 +127,7 @@
             <a href="{{route('product.view',[$product->id])}}"> 
             <button type="button" class="btn btn-sm btn-outline-success">View</button>
             </a>
-            
+            <a href="{{route('add.cart',[$product->id])}}">
             <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button></a>
             </div>
             <small class="text-muted">${{$product->price}}</small>
@@ -134,8 +159,7 @@
     <p class="float-right">
       <a href="#">Back to top</a>
     </p>
-    <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-    <p>New to Bootstrap? <a href="https://getbootstrap.com/">Visit the homepage</a> or read our <a href="/docs/4.4/getting-started/introduction/">getting started guide</a>.</p>
+    
   </div>
 </footer>
 </div>

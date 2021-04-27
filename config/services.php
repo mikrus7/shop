@@ -29,5 +29,6 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    'stripe' => ['secret' => 'sk_test_51Iic3oKL9P1w9rBFBRHZFZUR6zx5ylrk5WXMhwZmCym1BRU1ZH2xFZlPuBgPwPjCNJeMPqfWANmewHKOnAcSFAah00o7K4JYMN',],
 
 ];

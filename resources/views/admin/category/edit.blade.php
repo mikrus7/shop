@@ -39,9 +39,7 @@
                     </div>
                     <div class="form-group">
                       <label for="">Description</label>
-                      <textarea name="description" class="form-control @error('description') is-invalid @enderror ">
-                      	{{$category->description}}
-                      </textarea>
+                      <textarea name="description" class="form-control @error('description') is-invalid @enderror ">{{$category->description}}</textarea>
                        @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -53,6 +51,7 @@
                       <div class="custom-file">
                         <input type="file" class="custom-file-input " id="customFile" name="image">
                         <label class="custom-file-label @error('description') is-invalid @enderror " for="customFile">Choose file</label>
+                        <br><br>
                         <img src="{{Storage::url($category->image)}}" width="100" height="100">
                             @error('image')
                                     <span class="invalid-feedback" role="alert">

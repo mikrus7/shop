@@ -18,6 +18,14 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @notifyCss
+    @include('notify::messages')
+ <x:notify-messages />
+ <style>.inset-0 {
+    z-index: 999 !important;
+}</style>
+@notifyJs
+
 </head>
 <body>
     <div id="app">
@@ -38,9 +46,14 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                    <!-- @if(Auth::check())
+                      <li class="nav-item">  <a class="nav-link" href="{{route('order')}}">Order</a></li>
+                      @endif -->
                         <!-- Authentication Links -->
-                        <a href="#" class="nav-link">
-                        <span class="fas fa-shopping-cart">(0)</span>
+                        <a href="{{route('cart.show')}}" class="nav-link">
+                        <span class="fas fa-shopping-cart">
+                        ({{session()->has('cart')?session()->get('cart')->totalQty:'0'}})
+                        </span>
                         </a>
                         @guest
                             @if (Route::has('login'))
@@ -61,6 +74,13 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @if(Auth::check())
+                                       <a class="dropdown-item" href="{{route('order')}}">Order</a>
+                                    @endif
+                                    <!-- only visible for admin in front page -->
+                                    @if(Auth::user()->is_admin == 1)
+                                        <a class="dropdown-item" href="{{route('home')}}">Dashboard</a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
