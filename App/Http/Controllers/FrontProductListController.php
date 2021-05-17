@@ -11,7 +11,7 @@ use App\Models\Slider;
 class FrontProductListController extends Controller
 {
     public function index(){
-        $products =  Product::latest()->limit(9)->get();
+        $products =  Product::latest()->limit(6)->get();
     	$randomActiveProducts = Product::inRandomOrder()->limit(3)->get();
     	$randomActiveProductIds=[];
     	foreach($randomActiveProducts as $product){
@@ -79,7 +79,7 @@ class FrontProductListController extends Controller
             return view('all-product',compact('products'));
         }
 
-        $products = Product::latest()->paginate(50);
+        $products = Product::latest()->paginate(6);
         return view('all-product',compact('products'));
        
     }

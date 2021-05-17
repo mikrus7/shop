@@ -27,11 +27,12 @@
       @foreach($products as $product)
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
-            <img src="{{Storage::url($product->image)}}" height="200" style="width: 100%">
-            <div class="card-body">
+            <img src="{{Storage::url($product->image)}}" style="width: auto; max-height:300px; object-fit:contain">
+            
+            <div class="card2-body" style="  position: absolute; bottom: 0;">
                 <p><b>{{$product->name}}</b></p>
               <p class="card-text">
-                  {{(Str::limit($product->description,120))}}
+                  {{(Str::limit($product->description,15))}}
               </p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
@@ -39,7 +40,7 @@
                  </a>
                  <a href="{{route('add.cart',[$product->id])}}"> <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button></a>
                 </div>
-                <small class="text-muted">${{$product->price}}</small>
+                <small class="text-muted" style="position: relative; left: 100%; right: 0">${{$product->price}}</small>
               </div>
             </div>
           </div>

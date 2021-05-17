@@ -27,7 +27,10 @@ class SliderController extends Controller
         return redirect()->back();
     }
     public function destroy($id){
+		$slider = Slider::find($id);
+		$filename = $slider->image;
     	Slider::find($id)->delete();
+		\Storage::delete($filename);
     	notify()->success('Image deleted successfully!');
         return redirect()->back();
     }

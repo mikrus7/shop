@@ -10,8 +10,8 @@
     </div>
     <!-- Datatables -->
             <div class="col-lg-12">
-              <div class="card mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <div class="card2 mb-4">
+                <div class="card2-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">Products</h6>
                 </div>
                 <div class="table-responsive p-3">
@@ -38,8 +38,8 @@
                           <img src="{{Storage::url($product->image)}}" width="100">
                         </td>
                         <td>{{$product->name}}</td>
-                        <td>{!!$product->description!!}</td>
-                        <td>{!!$product->additional_info!!}</td>
+                        <td>{!! $product->description !!}</td>
+                        <td>{!! $product->additional_info !!}</td>
                         <td>${{$product->price}}</td>
                         <td>{{$product->category->name}}</td>
                         <td>

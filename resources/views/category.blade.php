@@ -5,6 +5,7 @@
 
     <div class="container">
         <h2>Products</h2>
+        <br>
 
         <div class="row">
         <div class="col-md-2">
@@ -21,10 +22,13 @@
                > {{$subcategory->name}}</p>
            <!--end foreach-->
            @endforeach
+           <br>
           <input type="submit" value="Filter" class="btn btn-secondary">
          </form>
+         <br>
          <hr>
          <h3>Filter by price</h3>
+         <br>
 
          <form  action="{{route('product.list',[$slug])}}" method="GET">
              <input type="text" name="min" class="form-control" placeholder="minimum price" required="">
@@ -37,7 +41,8 @@
             <input type="submit" value="Filter" class="btn btn-secondary">
 
         </form>
-       <hr>
+        <br>
+       
        <a href="{{route('product.list',[$slug])}}">
        <input type="submit" value="Unfilter" class="btn btn-secondary">
        </a>
@@ -53,11 +58,11 @@
       @foreach($products as $product)
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
-            <img src="{{Storage::url($product->image)}}" height="200" style="width: 100%">
-            <div class="card-body">
+            <img src="{{Storage::url($product->image)}}" style="width: auto; max-height:300px; object-fit:contain">
+            <div class="card2-body" style="  position: absolute; bottom: 0;">
                 <p><b>{{$product->name}} </b></p>
               <p class="card-text">
-                {{(Str::limit($product->description,100))}}
+                {{(Str::limit($product->description,15))}}
               </p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
@@ -68,7 +73,7 @@
                <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
                </a>
                 </div>
-                <small class="text-muted">${{$product->price}}</small>
+                <small class="text-muted" style="position: relative; left: 70%; right: 0">${{$product->price}}</small>
               </div>
             </div>
           </div>
