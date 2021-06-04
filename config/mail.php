@@ -36,7 +36,7 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.gmail.com'),
+            'host' => env('MAIL_HOST', 'mail.bgurbiel.me'),
             'port' => env('MAIL_PORT', 465),
             'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
             'username' => env('MAIL_USERNAME'),
@@ -84,8 +84,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'mikrus9991@gmail.com'),
-        'name' => env('MAIL_FROM_NAME', 'mik'),
+        'address' => env('MAIL_FROM_ADDRESS', 'support@bgurbiel.me'),
+        'name' => env('MAIL_FROM_NAME', 'Shop Support'),
     ],
 
     /*
